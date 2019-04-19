@@ -3,6 +3,11 @@ name = "singleflight"
 version = "0.1.0"
 authors = ["Garrett Squire <garrettsquire@gmail.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/gsquire/singleflight"
+documentation = "https://docs.rs/singleflight"
+description = "A Rust port of Go's singleflight package for call collapsing"
+readme = "README.md"
 
 [dependencies]
 crossbeam-utils = "0.6"
