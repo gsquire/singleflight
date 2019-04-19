@@ -1,0 +1,35 @@
+sudo: required
+language: rust
+cache: cargo
+addons:
+    apt:
+        packages:
+            - libcurl4-openssl-dev
+            - libelf-dev
+            - libdw-dev
+            - cmake
+        sources:
+            - kalakris-cmake
+os:
+    - linux
+    - osx
+    - windows
+rust:
+    - stable
+    - nightly
+matrix:
+    fast_finish: true
+before_script: |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      export PATH=$HOME/.cargo/bin:$PATH
+      cargo install -f cargo-travis
+    fi
+script:
+    - cargo build
+    - cargo test
+after_success: |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      cargo coveralls
+    fi
+notifications:
+    email: false
