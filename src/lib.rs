@@ -4,7 +4,7 @@ use crossbeam_utils::sync::WaitGroup;
 use hashbrown::HashMap;
 use parking_lot::Mutex;
 
-// Call is an in-flight or completed call to Do.
+// Call is an in-flight or completed call to work.
 #[derive(Clone, Debug)]
 struct Call<T>
 where
@@ -26,7 +26,7 @@ where
     }
 }
 
-/// `Group` represents a class of work and creates a space in which units of work
+/// Group represents a class of work and creates a space in which units of work
 /// can be executed with duplicate suppression.
 #[derive(Default)]
 pub struct Group<T>
@@ -40,16 +40,16 @@ impl<T> Group<T>
 where
     T: Clone + Debug,
 {
-    /// Create a new `Group` to do work with.
+    /// Create a new Group to do work with.
     pub fn new() -> Group<T> {
         Group {
             m: Mutex::new(HashMap::new()),
         }
     }
 
-    /// Execute and return the `Result` for a given function, making sure that only one
+    /// Execute and return the value for a given function, making sure that only one
     /// operation is in-flight at a given moment. If a duplicate call comes in, that caller will
-    /// wait until the original call completes and return the same result.
+    /// wait until the original call completes and return the same value.
     pub fn work<F>(&self, key: &str, func: F) -> T
     where
         F: Fn() -> T,
