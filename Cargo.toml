@@ -1,7 +1,7 @@
 [package]
 name = "singleflight"
-version = "0.1.0"
-authors = ["Garrett Squire <garrettsquire@gmail.com>"]
+version = "0.2.0"
+authors = ["Garrett Squire <github@garrettsquire.com>"]
 edition = "2018"
 license = "MIT"
 repository = "https://github.com/gsquire/singleflight"
@@ -10,6 +10,6 @@ description = "A Rust port of Go's singleflight package for call collapsing"
 readme = "README.md"
 
 [dependencies]
-crossbeam-utils = "0.6"
-hashbrown = "0.2"
-parking_lot = "0.7"
+crossbeam-utils = "0.8"
+hashbrown = "0.12"
+parking_lot = "0.12"
