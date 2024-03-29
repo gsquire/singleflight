@@ -65,7 +65,7 @@ where
 
         let c = Call::new();
         let wg = c.wg.clone();
-        let mut job = m.entry(key.to_owned()).or_insert(Box::new(c));
+        let job = m.entry(key.to_owned()).or_insert(Box::new(c));
         job.res = Some(func());
         drop(m);
         drop(wg);
