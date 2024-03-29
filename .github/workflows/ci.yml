@@ -6,7 +6,6 @@ jobs:
   check:
     name: test
     runs-on: ubuntu-latest
-    strategy:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
