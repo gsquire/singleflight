@@ -1,0 +1,24 @@
+on: [push, pull_request]
+
+name: CI
+
+jobs:
+  check:
+    name: test
+    runs-on: ubuntu-latest
+    strategy:
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Install stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: clippy
+        run: cargo clippy -- -D warnings
+
+      - name: Test
+        run: cargo test
